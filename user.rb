@@ -1,8 +1,9 @@
+require 'csv'
 class User
-  def initialize(name, pin, balence)
+  def initialize(name, pin, newbal)
     @name = name
     @pin = pin
-    @balence = balence
+    @newbal = newbal
   end
 
   def name
@@ -13,18 +14,13 @@ class User
     @pin
   end
 
-  def balence
+  def newbal
   	@balence
   end
 
-  def deposit(desamount)
-    newbalence = @balence + desamount
-    puts newbalence
+  CSV.open("info.csv", "wb") do |csv|
+    csv << ["row", "of", "CSV", "data"]
+    csv << ["another", "row"]
   end
-
-  def withdrawl
-    newbalence = @balence - withamount
-  end
-
 
 end

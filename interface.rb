@@ -6,18 +6,25 @@ def interface
 	"""
 	inpin = $stdin.gets.chomp
 
-name = nil
+	name = nil
+	usrbalence = nil
+	act_usrpin = inpin
 
 	CSV.foreach("info.csv") do |row|
 
-		name = row[0]
 		usrpin = row[1]
-		usrbalence = row[2]
 
 		if usrpin == inpin
-	  	User.new(name,usrpin,usrbalence)
+			define_vars(row[0], row[2])
 	 	end
 	end
+
+	def define_vars(a,b)
+
+		name = a
+		usrbalence = b
+	end
+
 	puts "Hello #{name}, what would you like to do today?\n"
 	puts "1: Deposit\n2: Withdraw\n3: Quickcash\n4: Exit\n"
 
@@ -25,15 +32,19 @@ name = nil
 	def which_to_run_main(n)
 		if n == "1"
 			desam = $stdin.gets.chomp
-			User.deposit(desam)
+			newbal = desam.to_f + usrbalence
+			User.new(name,usrpin,newbal)
 		elsif n == "2"
-			User.withdraw
+			e.withdraw
+			User.new(name,usrpin,newbal)
 		elsif n ==  "3"
-			User.quickcash
+			e.quickcash
+			User.new(name,usrpin,newbal)
 		else
 			puts "Thanks for using!"
 			interface
 		end
 	end
 	which_to_run_main(option_main)
+
 end
