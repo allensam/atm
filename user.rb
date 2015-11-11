@@ -17,13 +17,14 @@ class User
   	@balence
   end
 
-  def deposit 
+  def deposit(desamount)
     newbalence = @balence + desamount
+    puts newbalence
   end
 
   def withdrawl
     newbalence = @balence - withamount
-  end 
+  end
 
-  
+
 end
